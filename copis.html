@@ -1,0 +1,242 @@
+
+ <html>
+<head>
+<style>
+   
+     .inline-fields label{
+    display:inline-block;
+        margin-left: 10px;
+    }
+    input{
+        margin-left: 5px;
+    }
+    
+    }
+    th{
+        margin-left:50px;
+    }
+    
+    </style>
+</head>
+<body>
+
+
+        
+    
+        <body class="inline-fields">
+        
+            <div>
+                    <label class="inline-fields"><h4>Date</h4></label><input style="width:260;height:37px" type="Date"  name="Date" > 
+                
+                
+    <label class="inline-fields" for="inline-fields"><h4>Dealer</h4></label>
+        <select  style="width:260;height:37px">
+            <option value="Dealer1">Dealer1</option>
+            <option value="Dealer2">Dealer2</option>
+            <option value="Dealer3">Dealer3</option>
+            <option value="Dealer4">Dealer4</option>
+        </select>
+     
+     <label class="inline-fields"  for="inline-fields"><h4>GSTin</h4></label>
+        <select style="width:260;height:37px">
+            <option value="hsn1">hsn1</option>
+            <option value="hsn2">hsn2</option>
+            <option value="hsn3">hsn3</option>
+            <option value="hsn4">hsn4</option>
+        </select>
+     
+                
+     <label class="inline-fields"  for="inline-fields"><h4>Invoice number</h4></label><input style="width:260;height:37px" type="text"  name="invoice number" >
+                
+    <label class="inline-fields"  for="inline-fields"><h4>Category</h4></label>
+        <select style="width:120px;height:37px;" name="Category"id="Category" >
+            <option value="category">--select category--</option>
+            <option value="electronics">electronics</option>
+            <option value="glosasries">glossries</option>
+            <option value="cloths">cloths</option>
+        </select>
+   
+      <label class="inline-fields"  for="inline-fields"><h4>Product</h4></label>
+         <select style="width:120px;height:37px;" name="Product"id="Product"  >
+             <option value="product">--select product--</option>
+             <option value="Charger">Charger</option>
+             <option value="Handwash">Handwash</option>
+             <option value="Tshirt">Tshirt</option>
+         </select>
+      
+     <label class="inline-fields"  for="inline-fields"><h4>Quantity</h4></label><input style="width:80px;height:37px;" type="text" name="Quantity" id="Quantity">
+      <label class="inline-fields"  for="inline-fields"><h4>Landingprice</h4></label><input style="width:80px;height:37px;"type="text" name="Landingprice" id="Landingprice" onchange="calculate()">
+     <label class="inline-fields"  for="inline-fields"><h4>Discount</h4></label><input style="width:80px;height:37px;" type="text" name="disc" id="disc" onchange="newprice()">
+     <label class="inline-fields"  for="inline-fields"><h4>Amount</h4></label><input style="width:80px;height:37px;" type="text"  name="Amount" id="Amount" >
+      <label class="inline-fields"  for="inline-fields"><h4>Price</h4></label><input style="width:120px;height:37px;"type="text" name="price" id="price" ></form>
+    <button style="background-color: green;color:white;height:37px;margin-left:8px;" onclick="addHtmlTableRow();">Add To Table</button>    
+         </div>
+        
+        <div>
+             <hr style="height:2px;color:#333;margin-top:50px;background-color: #333">
+         <table id="table" style="width:80%;background-color: black;text-align: left; color:white;">
+                    <tr  style="width:100%;">
+                        <th>Catagory</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Landingprice</th>
+                        <th>Discount</th>
+                        <th>Price</th>
+                        <th></th>
+                    </tr>
+            
+         </table>
+             <hr style="height:2px;color:#333;background-color: #333">
+    </div>
+    
+    <div>
+     <label class="inline-fields"  for="inline-fields"><h4>Tax</h4></label><input style="width:70px;height:37px;" type="text" name="Tax" id="Tax">
+         <label class="inline-fields"  for="inline-fields"><h4>Amount</h4></label><input style="width:70px;height:37px;" type="text" name="amount" id="amount">
+         <label class="inline-fields"  for="inline-fields"><h4>Discount(%)</h4></label><input style="width:70px;height:37px;" type="text" name="discount" id="discount">
+         <label class="inline-fields"  for="inline-fields"><h4>Discounted</h4></label><input style="width:70px;height:37px;" type="text" name="Dis" id="Dis">
+        
+        <label class="inline-fields"  for="inline-fields"><h4>Othercharges</h4></label><input style="width:120px;height:37px;"type="text" name="oth" id="oth">
+        <label class="inline-fields"  for="inline-fields"><h4>Details</h4></label><input style="width:120px;height:37px;"type="text" name="dls" id="dls">
+        <label class="inline-fields"  for="inline-fields"><h4>NetTotal</h4></label><input style="width:120px;height:37px;"type="text" name="net" id="net">
+        <button style="background-color: green;color:white;height:37px;margin-left:8px;">Finish Purchase</button>    
+         </div>
+    
+    
+    </div>
+    
+        <script>
+            
+            
+             
+           var rIndex,
+                table = document.getElementById("table");
+            
+            
+              
+            function calculate(){
+                var input1 =document.getElementById('Quantity').value;
+                var input2 = document.getElementById('Landingprice').value;
+                var price= document.getElementById('price');
+                var myresult = input1*input2;
+                document.getElementById('price').value = myresult;
+           
+                
+                  }
+            
+          
+            function newprice(){
+                var input1 =document.getElementById('Quantity').value;
+                var input2 = document.getElementById('Landingprice').value;
+               var disc = document.getElementById('disc').value;
+                var price= document.getElementById('price');
+                 var amn = document.getElementById('Amount');
+                   var amount =input1*input2*disc/100;
+                
+                var result = input1*input2*disc/100;
+                var res = (input1*input2-result);
+                document.getElementById('Amount').value = amount;
+                                document.getElementById('price').value = res; 
+                
+              
+                
+            }
+           
+            
+            
+            function checkEmptyInput()
+            {
+                var isEmpty = false,
+                    Quantity= document.getElementById("Quantity").value,
+                    Landingprice= document.getElementById("Landingprice").value,
+                    Discount= document.getElementById("disc").value;
+            
+                if(Category=== ""){
+                    alert("Category Connot Be Empty");
+                    isEmpty = true;
+                }
+                 else if(Product=== ""){
+                    alert("Product Connot Be Empty");
+                    isEmpty = true;
+                }
+                
+                else if(Quantity=== ""){
+                    alert("Quantity Connot Be Empty");
+                    isEmpty = true;
+                }
+                else if(Landingprice === ""){
+                    alert("Landingprice Connot Be Empty");
+                    isEmpty = true;
+                }
+                else if(disc=== ""){
+                    alert("discount Connot Be Empty");
+                    isEmpty = true;
+                }
+                            
+                return isEmpty;
+            }
+            
+        
+            function addHtmlTableRow()
+            {
+            
+                if(!checkEmptyInput()){
+                var newRow = table.insertRow(table.length),
+                    cell1 = newRow.insertCell(0),
+                    cell2 = newRow.insertCell(1),
+                    cell3 = newRow.insertCell(2), 
+                    cell4 = newRow.insertCell(3), 
+                    cell5 = newRow.insertCell(4), 
+                    cell6 = newRow.insertCell(5), 
+                    cell7 = newRow.insertCell(6),
+                    Category= document.getElementById("Category").value,
+                     Product = document.getElementById("Product").value,
+                     Quantity= document.getElementById("Quantity").value,
+                    Landingprice= document.getElementById("Landingprice").value,
+                     disc= document.getElementById("disc").value,
+                     price = document.getElementById("price").value;
+
+                cell1.innerHTML = Category;
+                cell2.innerHTML = Product;
+                cell3.innerHTML = Quantity;
+                cell4.innerHTML = Landingprice;
+                cell5.innerHTML = disc;
+                    cell6.innerHTML = price;
+                    cell7.innerHTML= `<button style="background-color:red;color:black;padding:10px;margin-left:50px;">delete</button>`;
+    
+                // call the function to set the event to the new row
+                selectedRowToInput();
+            }
+            }
+            
+            // display selected row data into input text
+            function selectedRowToInput()
+            {
+                
+                for(var i = 1; i < table.rows.length; i++)
+                {
+                    table.rows[i].onclick = function()
+                    {
+                      // get the seected row index
+                      rIndex = this.rowIndex;
+                        document.getElementById("Category").value = this.cells[1].innerHTML;
+                        document.getElementById("Product").value = this.cells[2].innerHTML;
+                      document.getElementById("Quantity").value = this.cells[3].innerHTML;
+                      document.getElementById("Landingprice").value = this.cells[4].innerHTML;
+                      document.getElementById("disc").value = this.cells[5].innerHTML;
+                        document.getElementById("price").value = this.cells[6].innerHTML;
+                    };
+                }
+            }
+            selectedRowToInput();
+            
+            
+              addHtmlTableRow.onclick =function(){
+                  
+                var tax =document.getElementById('tax');
+                var tres= tax/res;
+                console.log(tres);
+                document.getElementById('amount').value = tres;
+              }
+    </script>
+    </body>
+</html>
